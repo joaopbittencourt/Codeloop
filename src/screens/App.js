@@ -1,12 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,12 +9,14 @@ import {
   StatusBar,
 } from 'react-native';
 
+import { Button } from 'react-native';
+
 import {
   Header,
   Colors,
-} from 'react-native/Libraries/NewAppScreen';
+} from '../../node_modules/react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+const App: () => React$Node = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -29,14 +24,44 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
           <View style={styles.body}>
+            <View
+            
+              style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Estudante 1</Text>
+              <Text style={styles.sectionDescription}>Joao</Text>
+              <Button
+                title="Go to Details"
+                onPress={() => navigation.navigate('FormStudent')}
+              />
+            </View>
             <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Estudane 2</Text>
+              <Text style={styles.sectionDescription}>Pedro</Text>
+            </View>
+            <View
+              onResponderMove = {() => navigation.navigate('FormStudent') }
+              style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Estudante 1</Text>
+              <Text style={styles.sectionDescription}>Joao</Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Estudane 2</Text>
+              <Text style={styles.sectionDescription}>Pedro</Text>
+            </View>
+            <View
+              onResponderMove = {() => navigation.navigate('FormStudent') }
+              style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Estudante 1</Text>
+              <Text style={styles.sectionDescription}>Joao</Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Estudane 2</Text>
+              <Text style={styles.sectionDescription}>Pedro</Text>
+            </View>
+            <View
+              onResponderMove = {() => navigation.navigate('FormStudent') }
+              style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Estudante 1</Text>
               <Text style={styles.sectionDescription}>Joao</Text>
             </View>
@@ -50,6 +75,10 @@ const App: () => React$Node = () => {
     </>
   );
 };
+
+App.navigationOptions = {
+  title: 'App',
+}
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -75,19 +104,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+    color: Colors.dark
+  }
 });
 
 export default App;
