@@ -1,65 +1,117 @@
 import React, { Component } from 'react';
-import { View, TextInput, Text } from 'react-native';
+import { Content, View, TextInput, Text, StyleSheet, Form, Button, Icon } from 'react-native';
 import { withFormik } from 'formik';
 
-export default class FormStudent extends Component {
+export default class FormStudent extends Component<{}>  {
+
+    styles = StyleSheet.create({
+        bg: {
+            backgroundColor: '#E0EEEE'
+        },
+        container: {
+            marginLeft : 15,
+            marginRight: 15
+        },
+        formOuter: { backgroundColor: '#E0EEEE'}
+    });
+
+    handle = (param, text) => {
+        this.setState({ param : text })
+    }
    
+    formSubmit = () => {
+        console.log(this.state.name)
+    }
+
+    state = {
+        name: this.props.student.name,
+        dateOfBirth: this.props.student.dateOfBirth,
+        schoolLevel: this.props.student.schoolLevel,
+        codeZip: this.props.address.codeZip,
+        publicPlace: this.props.address.publicPlace,
+        number: this.props.address.number,
+        complement: this.props.address.complement,
+        neighborhood: this.props.address.neighborhood,
+        city: this.props.address.city,
+        state: this.props.address.state,
+        motherName: this.props.mother.motherName,
+        cpf: this.props.mother.motherName,
+        preferredDate: this.props.mother.preferredDate
+    }
+    
     render() {
+
         return (
-            <View>
-                <TextInput
-                value={this.props.student.name}
-                onChangeText={text => this.setState('name', text)}
-                />
+                <>
+                
+                    <TextInput style={this.styles.bg}
+                        value={this.state.name}
+                        onChangeText={text => this.setState({name: text})}
+                    />
 
-                <TextInput
-                value={this.props.student.dateOfBirth}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.dateOfBirth}
+                        onChangeText={text => this.setState({dateOfBirth: text})}
+                    />
 
-                <TextInput
-                value={this.props.student.schoolLevel}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.schoolLevel}
+                        onChangeText={text => this.setState({schoolLevel: text})}
+                    />
 
-                <TextInput
-                value={this.props.address.codeZip}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.codeZip}
+                        onChangeText={text => this.setState({codeZip: text})}
+                    />
 
-                <TextInput
-                value={this.props.address.publicPlace}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.publicPlace}
+                        onChangeText={text => this.setState({publicPlace: text})}
+                    />
 
-                <TextInput
-                value={this.props.address.number}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.number}
+                        onChangeText={text => this.setState({number: text})}
+                    />
 
-                <TextInput
-                value={this.props.address.complement}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.complement}
+                        onChangeText={text => this.setState({complement: text})}
+                    />
 
-                <TextInput
-                value={this.props.address.neighborhood}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.neighborhood}
+                        onChangeText={text => this.setState({neighborhood: text})}
+                    />
 
-                <TextInput
-                value={this.props.address.city}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.city}
+                        onChangeText={text => this.setState({city: text})}
+                    />
 
-                <TextInput
-                value={this.props.address.state}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.state}
+                        onChangeText={text => this.setState({state: text})}
+                    />
 
-                <TextInput
-                value={this.props.mother.motherName}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.motherName}
+                        onChangeText={text => this.setState({motherName: text})}
+                    />
 
-                <TextInput
-                value={this.props.mother.cpf}
-                />
+                    <TextInput style={this.styles.bg}
+                        value={this.state.cpf}
+                        onChangeText={text => this.setState({cpf: text})}
+                    />
 
-                <TextInput
-                value={this.props.mother.preferredDate}
-                />
-            </View>
+                    <TextInput style={this.styles.bg}
+                        value={this.state.preferredDate}
+                        onChangeText={text => this.setState({preferredDate: text})}
+                    />
+                    <Button title="Save"  onPress={this.formSubmit.bind(this)}>
+						
+					</Button>
+                </>
         )
     }
 }
