@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {AsyncStorage, FlatList} from 'react-native';
 
 import {
   SafeAreaView,
@@ -10,70 +13,70 @@ import {
 } from 'react-native';
 
 import { Button } from 'react-native';
+import { Item } from '../components/Item';
 
-import {
-  Header,
-  Colors,
-} from '../../node_modules/react-native/Libraries/NewAppScreen';
+export default class App extends Component<{}>{
+  
+  constructor(inProps) {
+    super(inProps);
+    this.state = { listData : [] };
+    this.getAll();
 
-const App: () => React$Node = ({ navigation }) => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <View style={styles.body}>
-            <View
+  }
+  async getAll(){
+    
+    try {
+      const value = await AsyncStorage.getItem('data');
+      if (value !== null) {
+        
+       this.setState({listData: JSON.parse(value) })
+       
+      }
+
+    } catch (error) {}
+}
+
+  render( ){
+    return (
+      <>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <View style={styles.banner}>
+                  <Text style={styles.bannerText}>CODELOOP - Cadastro de estudante</Text>
+                  <Button title="Add"  onPress={() => this.props.navigation.navigate('Formulario')} ></Button>
+              </View>
+            <View style={styles.body}>
+              <View
+                style={styles.sectionContainer}>
+                <Text style={styles.sectionTitle}>Estudante 1</Text>
+                <Text style={styles.sectionDescription}>Joao</Text>
+                <Button
+                  title="Go to Details"
+                
+                  onPress={() => navigation.navigate('FormStudent')}
+                />
+              </View>
+              
+              <FlatList
+                  data={this.state.listData}
+                 
+                  renderItem={({ item }) => (
+                    <View
+                      style={styles.sectionContainer}>
+                      <Text style={styles.sectionTitle}>{item.student.name}</Text>
+                      <Text style={styles.sectionDescription}>{item.student.schoolLevel}</Text>
+                      <Button
+                        title="Go to Details"
+                        onPress={() => this.props.navigation.navigate('Formulario', {item})}
+                      />
+                    </View>)}
+                />
+            </View>
             
-              style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudante 1</Text>
-              <Text style={styles.sectionDescription}>Joao</Text>
-              <Button
-                title="Go to Details"
-                onPress={() => navigation.navigate('FormStudent')}
-              />
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudane 2</Text>
-              <Text style={styles.sectionDescription}>Pedro</Text>
-            </View>
-            <View
-              onResponderMove = {() => navigation.navigate('FormStudent') }
-              style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudante 1</Text>
-              <Text style={styles.sectionDescription}>Joao</Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudane 2</Text>
-              <Text style={styles.sectionDescription}>Pedro</Text>
-            </View>
-            <View
-              onResponderMove = {() => navigation.navigate('FormStudent') }
-              style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudante 1</Text>
-              <Text style={styles.sectionDescription}>Joao</Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudane 2</Text>
-              <Text style={styles.sectionDescription}>Pedro</Text>
-            </View>
-            <View
-              onResponderMove = {() => navigation.navigate('FormStudent') }
-              style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudante 1</Text>
-              <Text style={styles.sectionDescription}>Joao</Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Estudane 2</Text>
-              <Text style={styles.sectionDescription}>Pedro</Text>
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+        </SafeAreaView>
+      </>
+    );
+  }
 };
 
 App.navigationOptions = {
@@ -82,14 +85,14 @@ App.navigationOptions = {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+    backgroundColor: '#4169E1'  
   },
   engine: {
     position: 'absolute',
     right: 0,
   },
   body: {
-    backgroundColor: Colors.white,
+    backgroundColor: '#FFF',
   },
   sectionContainer: {
     marginTop: 25,
@@ -98,14 +101,25 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: Colors.black,
+    color: '#000',
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: Colors.dark
+    color: '#000'
+  },
+  banner: {
+    height: 80,
+    padding: 20,
+    backgroundColor: '#4169E1'  
+  },
+  bannerText: {
+    fontWeight: "bold"
+  },
+  bottonAdd: {
+    width: 10,
+    marginTop: 100
   }
-});
 
-export default App;
+});

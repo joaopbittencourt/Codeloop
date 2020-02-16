@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Content, View, TextInput, Text, StyleSheet, Form, Button, Icon } from 'react-native';
 import { withFormik } from 'formik';
+import {AsyncStorage} from 'react-native';
 
 export default class FormStudent extends Component<{}>  {
 
@@ -20,10 +21,47 @@ export default class FormStudent extends Component<{}>  {
     }
    
     formSubmit = () => {
-        console.log(this.state.name)
+        console.log("Alala");
+       
+        let data = [{
+            id : this.state.id,
+            student : {
+                name: this.state.name,
+                dateOfBirth: this.state.dateOfBirth,
+                schoolLevel: this.state.schoolLevel
+            },
+            address : {
+                codeZip: this.state.codeZip,
+                publicPlace: this.state.publicPlace,
+                number: this.state.number,
+                complement: this.state.complement,
+                neighborhood: this.state.neighborhood,
+                city: this.state.city,
+                state: this.state.state
+            },
+            mother : {
+                motherName: this.state.motherName,
+                cpf: this.state.cpf,
+                preferredDate: this.state.preferredDate
+            }
+        }]
+        this.saveData(data);
     }
 
+    async saveData(data)  {
+        console.log("Salvar");
+        
+        try {
+            await AsyncStorage.setItem('data', JSON.stringify(data));
+        } catch (error) {
+            console.log(error.message);
+        }
+        console.log("Salvo");
+
+    };
+
     state = {
+        id: this.props.id, 
         name: this.props.student.name,
         dateOfBirth: this.props.student.dateOfBirth,
         schoolLevel: this.props.student.schoolLevel,
@@ -108,7 +146,7 @@ export default class FormStudent extends Component<{}>  {
                         value={this.state.preferredDate}
                         onChangeText={text => this.setState({preferredDate: text})}
                     />
-                    <Button title="Save"  onPress={this.formSubmit.bind(this)}>
+                    <Button title="Save"  onPress={this.formSubmit}>
 						
 					</Button>
                 </>
