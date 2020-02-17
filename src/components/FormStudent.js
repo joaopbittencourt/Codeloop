@@ -16,9 +16,6 @@ export default class FormStudent extends Component<{}>  {
         formOuter: { backgroundColor: '#E0EEEE'}
     });
 
-    handle = (param, text) => {
-        this.setState({ param : text })
-    }
    
     formSubmit = () => {
        
@@ -72,8 +69,12 @@ export default class FormStudent extends Component<{}>  {
         motherName: this.props.mother.motherName,
         cpf: this.props.mother.motherName,
         preferredDate: this.props.mother.preferredDate
-    }
+    };
     
+    onlyNumber = (  numberVal ) => {
+        return numberVal.replace(/[- #*;,.<>\{\}\[\]\\\/]/gi, '');
+    };
+
     render() {
 
         return (
@@ -82,6 +83,7 @@ export default class FormStudent extends Component<{}>  {
                     <TextInput style={this.styles.bg}
                         value={this.state.name}
                         placeholder="Nome do estudante"
+                        maxLength={100}
                         onChangeText={text => this.setState({name: text})}
                     />
 
@@ -100,30 +102,40 @@ export default class FormStudent extends Component<{}>  {
                     <TextInput style={this.styles.bg}
                         value={this.state.codeZip}
                         placeholder="CEP"
+                        textContentType="postalCode"
                         onChangeText={text => this.setState({codeZip: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.publicPlace}
                         placeholder="Rua"
+                        maxLength={120}
                         onChangeText={text => this.setState({publicPlace: text})}
                     />
-
+    
                     <TextInput style={this.styles.bg}
                         value={this.state.number}
                         placeholder="Numero"
-                        onChangeText={text => this.setState({number: text})}
+                        keyboardType="numeric"
+                        onChangeText={number => {
+                                this.setState({number: this.onlyNumber(number)});
+                                value = this.state.number
+                            }
+                        
+                        }
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.complement}
                         placeholder="Complemento"
+                        maxLength={50}
                         onChangeText={text => this.setState({complement: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.neighborhood}
                         placeholder="Bairro"
+                        maxLength={100}
                         onChangeText={text => this.setState({neighborhood: text})}
                     />
 
@@ -142,6 +154,7 @@ export default class FormStudent extends Component<{}>  {
                     <TextInput style={this.styles.bg}
                         value={this.state.motherName}
                         placeholder="Nome da mãe"
+                        maxLength={100}
                         onChangeText={text => this.setState({motherName: text})}
                     />
 
