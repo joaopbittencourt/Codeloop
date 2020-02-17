@@ -81,66 +81,79 @@ export default class FormStudent extends Component<{}>  {
                 
                     <TextInput style={this.styles.bg}
                         value={this.state.name}
+                        placeholder="Nome do estudante"
                         onChangeText={text => this.setState({name: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.dateOfBirth}
+                        placeholder="Data de nascimento"
                         onChangeText={text => this.setState({dateOfBirth: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.schoolLevel}
+                        placeholder="Serie de ingresso"
                         onChangeText={text => this.setState({schoolLevel: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.codeZip}
+                        placeholder="CEP"
                         onChangeText={text => this.setState({codeZip: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.publicPlace}
+                        placeholder="Rua"
                         onChangeText={text => this.setState({publicPlace: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.number}
+                        placeholder="Numero"
                         onChangeText={text => this.setState({number: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.complement}
+                        placeholder="Complemento"
                         onChangeText={text => this.setState({complement: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.neighborhood}
+                        placeholder="Bairro"
                         onChangeText={text => this.setState({neighborhood: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.city}
+                        placeholder="Cidade"
                         onChangeText={text => this.setState({city: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.state}
+                        placeholder="Estado"
                         onChangeText={text => this.setState({state: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.motherName}
+                        placeholder="Nome da mãe"
                         onChangeText={text => this.setState({motherName: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.cpf}
+                        placeholder="CPF"
                         onChangeText={text => this.setState({cpf: text})}
                     />
 
                     <TextInput style={this.styles.bg}
                         value={this.state.preferredDate}
+                        placeholder="Vencimento de mensalidade"
                         onChangeText={text => this.setState({preferredDate: text})}
                     />
                     <Button title="Save"  onPress={this.formSubmit}>
