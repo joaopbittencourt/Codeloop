@@ -21,10 +21,8 @@ export default class FormStudent extends Component<{}>  {
     }
    
     formSubmit = () => {
-        console.log("Alala");
        
         let data = [{
-            id : this.state.id,
             student : {
                 name: this.state.name,
                 dateOfBirth: this.state.dateOfBirth,
@@ -61,7 +59,6 @@ export default class FormStudent extends Component<{}>  {
     };
 
     state = {
-        id: this.props.id, 
         name: this.props.student.name,
         dateOfBirth: this.props.student.dateOfBirth,
         schoolLevel: this.props.student.schoolLevel,

@@ -46,17 +46,6 @@ export default class App extends Component<{}>{
                   <Button title="Add"  onPress={() => this.props.navigation.navigate('Formulario')} ></Button>
               </View>
             <View style={styles.body}>
-              <View
-                style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Estudante 1</Text>
-                <Text style={styles.sectionDescription}>Joao</Text>
-                <Button
-                  title="Go to Details"
-                
-                  onPress={() => navigation.navigate('FormStudent')}
-                />
-              </View>
-              
               <FlatList
                   data={this.state.listData}
                  

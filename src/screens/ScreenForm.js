@@ -9,7 +9,6 @@ export default class ScreenForm extends Component{
     render(){
       const undefinedParam = this.props.route.params !== undefined ? false : true; 
          let data = {
-          id :  !undefinedParam ? this.props.route.params.item.id : 0,
           student : !undefinedParam ? this.props.route.params.item.student : {
               name: '',
               dateOfBirth: '',
@@ -41,7 +40,6 @@ export default class ScreenForm extends Component{
         <ScrollView>
                 <View style={styles.content}>
                     <FormStudent 
-                        id={data.id}
                         student = {data.student}
                         address = {data.address}
                         mother = {data.mother}
