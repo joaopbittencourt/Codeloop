@@ -7,15 +7,15 @@ import FormStudent from '../components/FormStudent';
 
 export default class ScreenForm extends Component{
     render(){
-     
+      const undefinedParam = this.props.route.params !== undefined ? false : true; 
          let data = {
-          id :  this.props.route.params.item.id !== undefined ? this.props.route.params.item.id : 0,
-          student : this.props.route.params.item.id !== undefined ? this.props.route.params.item.student : {
+          id :  !undefinedParam ? this.props.route.params.item.id : 0,
+          student : !undefinedParam ? this.props.route.params.item.student : {
               name: '',
               dateOfBirth: '',
               schoolLevel: ''
           },
-          address : this.props.route.params.item.id !== undefined ? this.props.route.params.item.address :  {
+          address : !undefinedParam ? this.props.route.params.item.address :  {
               codeZip: '',
               publicPlace: '',
               number: '',
@@ -24,7 +24,7 @@ export default class ScreenForm extends Component{
               city: '',
               state: ''
           },
-          mother : this.props.route.params.item.id !== undefined ? this.props.route.params.item.mother :  {
+          mother : !undefinedParam ? this.props.route.params.item.mother :  {
               motherName: '',
               cpf: '',
               preferredDate: ''
