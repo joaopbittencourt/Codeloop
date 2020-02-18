@@ -4,11 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import FormStudent from '../components/FormStudent';
 
-
 export default class ScreenForm extends Component{
     render(){
       const undefinedParam = this.props.route.params !== undefined ? false : true; 
          let data = {
+          id : !undefinedParam ? this.props.route.params.item.id : Date.now(),
           student : !undefinedParam ? this.props.route.params.item.student : {
               name: '',
               dateOfBirth: '',

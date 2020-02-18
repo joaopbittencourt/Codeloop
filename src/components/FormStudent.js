@@ -19,7 +19,8 @@ export default class FormStudent extends Component<{}>  {
    
     formSubmit = () => {
        
-        let data = [{
+        let data = {
+            id : this.state.id,
             student : {
                 name: this.state.name,
                 dateOfBirth: this.state.dateOfBirth,
@@ -39,7 +40,7 @@ export default class FormStudent extends Component<{}>  {
                 cpf: this.state.cpf,
                 preferredDate: this.state.preferredDate
             }
-        }]
+        }
         this.saveData(data);
     }
 
@@ -47,7 +48,7 @@ export default class FormStudent extends Component<{}>  {
         console.log("Salvar");
         
         try {
-            await AsyncStorage.setItem('data', JSON.stringify(data));
+            await AsyncStorage.setItem(data.id, JSON.stringify(data));
         } catch (error) {
             console.log(error.message);
         }
@@ -56,6 +57,7 @@ export default class FormStudent extends Component<{}>  {
     };
 
     state = {
+        id: this.props.id,
         name: this.props.student.name,
         dateOfBirth: this.props.student.dateOfBirth,
         schoolLevel: this.props.student.schoolLevel,

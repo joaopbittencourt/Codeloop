@@ -6,7 +6,6 @@ import {AsyncStorage, FlatList} from 'react-native';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
@@ -20,23 +19,40 @@ export default class App extends Component<{}>{
   constructor(inProps) {
     super(inProps);
     this.state = { listData : [] };
+    
     this.getAll();
 
   }
   async getAll(){
-    
     try {
-      const value = await AsyncStorage.getItem('data');
-      if (value !== null) {
-        
-       this.setState({listData: JSON.parse(value) })
-       
-      }
+      this.state = { listData : [] };
+        AsyncStorage.getAllKeys((err, keys) => {
+          AsyncStorage.multiGet(keys, (err, datas) => {
 
-    } catch (error) {}
-}
+          datas.map((result, i, data) => {
+            let key = data[i][0];
+            let valueParse = [];
+            valueParse.push(JSON.parse(data[i][1])[0]);
+          
+            let listData = {
+              id : key,
+              student : valueParse[0].student,
+              address :valueParse[0].address,
+              mother : valueParse[0].mother 
+            }
+            
+            this.state.listData.push(listData);
+          
+          });
+        });
+      });
+    }catch (error){
+      console.log(error);
+    } 
+  }
 
   render( ){
+    
     return (
       <>
         <StatusBar barStyle="dark-content" />
@@ -48,7 +64,7 @@ export default class App extends Component<{}>{
             <View style={styles.body}>
               <FlatList
                   data={this.state.listData}
-                 
+                  extraData= {this.state}
                   renderItem={({ item }) => (
                     <View
                       style={styles.sectionContainer}>
